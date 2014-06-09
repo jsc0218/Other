@@ -17,7 +17,7 @@ void Dijkstra(const vector<vector<Node>> &graph, int s, vector<int> &dist) {
 	vector<bool> visited(N, false);
 	visited[s] = true;
 	for (int i=0; i<graph[s].size(); ++i) dist[graph[s][i].id] = graph[s][i].dist;
-	for (int i=0; i<N; ++i) {
+	for (int i=1; i<N; ++i) {
 		int minVal = INT_MAX, t = s;
 		for (int j=0; j<N; ++j) {
 			if (!visited[j] && dist[j]<minVal) {
