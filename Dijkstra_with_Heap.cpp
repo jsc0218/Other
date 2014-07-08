@@ -29,12 +29,14 @@ void Dijkstra(const vector<vector<Node>> &graph, int s, vector<int> &dist) {
 			if (!visited[e.second]) {
 				t = e.second;
 				visited[t] = true;
-				dist[t] = e.first;
 			}
 		}
 		for (int j=1; j<graph[t].size(); ++j) {
 			int v = graph[t][j].id, d = graph[t][j].dist+dist[t];
-			if (!visited[v] && dist[v]>d) pq.push(Elem(d, v));
+			if (!visited[v] && dist[v]>d) {
+				dist[v] = d;
+				pq.push(Elem(d, v));
+			}
 		}
 	}
 }
