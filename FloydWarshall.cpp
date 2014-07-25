@@ -18,12 +18,16 @@ bool FloydWarshall(const vector<vector<Node>> &graph, vector<vector<int>> &table
 	int N = graph.size();
 	for (int i=1; i<N; ++i) {
 		table[i][i] = 0;
-		for (int j=0; j<graph[i].size(); ++j) table[i][graph[i][j].id] = graph[i][j].dist;
+		for (int j=0; j<graph[i].size(); ++j) {
+			table[i][graph[i][j].id] = graph[i][j].dist;
+		}
 		if (table[i][i] < 0) return false;
 	}
 	for (int k=1; k<N; ++k) {
 		for (int i=1; i<N; ++i) {
-			for (int j=1; j<N; ++j) table[i][j] = min(table[i][j], table[i][k]+table[k][j]);
+			for (int j=1; j<N; ++j) {
+				table[i][j] = min(table[i][j], table[i][k]+table[k][j]);
+			}
 			if (table[i][i] < 0) return false;
 		}
 	}
@@ -46,7 +50,9 @@ int main() {
 	if (bAcyclic) {
 		int sp = INT_MAX;
 		for (int i=1; i<=V; ++i) {
-			for (int j=1; j<=V; ++j) sp = min(sp, table[i][j]);
+			for (int j=1; j<=V; ++j) {
+				sp = min(sp, table[i][j]);
+			}
 		}
 		cout<<sp<<endl;
 	}
