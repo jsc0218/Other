@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <cmath>
 #include <cfloat>
-#include <ctime>
 using namespace std;
 
 const int B = 24;
@@ -93,8 +92,6 @@ int main() {
 			dists[i][j] = sqrt(x*x + y*y);
 		}
 	}
-	clock_t start = clock();
 	cout<<(int)TSP(dists)<<endl;
-	clock_t end = clock();
 	return 0;
 }
