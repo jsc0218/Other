@@ -57,12 +57,12 @@ bool computeSCC(const vector<vector<int>> &graph) {
 	return true;
 }
 
-bool twoSAT(const vector<pair<int, int>> &input) {
-	int N = input.size();
+bool twoSAT(const vector<pair<int, int>> &clause) {
+	int N = clause.size();
 	vector<vector<int>> graph(1+(N<<1));
 	for (int i=0; i<N; ++i) {
-		graph[-input[i].first+N].push_back(input[i].second+N);
-		graph[-input[i].second+N].push_back(input[i].first+N);
+		graph[-clause[i].first+N].push_back(clause[i].second+N);
+		graph[-clause[i].second+N].push_back(clause[i].first+N);
 	}
 	return computeSCC(graph);
 }
@@ -71,9 +71,9 @@ int main() {
 	ifstream fin("C:\\Users\\Administrator\\Desktop\\2sat2.txt");
 	int N;
 	fin>>N;
-	vector<pair<int, int>> input(N);
-	for (int i=0; i<N; ++i) fin>>input[i].first>>input[i].second;
+	vector<pair<int, int>> clause(N);
+	for (int i=0; i<N; ++i) fin>>clause[i].first>>clause[i].second;
 	fin.close();
-	cout<<twoSAT(input)<<endl;
+	cout<<twoSAT(clause)<<endl;
 	return 0;
 }
